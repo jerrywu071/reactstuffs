@@ -14,10 +14,8 @@ function App() {
   //must call directly in component function at the top level and not on an inner helper function. 2nd element in the array is a function called to update the data i.e. call the component function again
 
   //also, the initial state has to be a valid element in the array otherwise an error will persist
-  const [ selectedTopic, setSelectedTopic ] = useState('components'); 
-  
+  const [ selectedTopic, setSelectedTopic ] = useState(); 
 
-  let tabContent = 'Please click a button';
 
   function handleSelect(selectedButton) {
       //selected button can be components, jsx, props, or state
@@ -25,6 +23,23 @@ function App() {
       setSelectedTopic(selectedButton);
 
       console.log(selectedTopic);
+  }
+
+  //conditional rendering for the tab content
+  let tabContent = <p>Please select a topic.</p>;
+
+  if(selectedTopic) {
+    tabContent = (
+      <div id="tab-content">
+        <h3>{EXAMPLES[selectedTopic].title}</h3>
+        <p>{EXAMPLES[selectedTopic].description}</p>
+        <pre>
+          <code>
+            {EXAMPLES[selectedTopic].code}
+          </code>
+        </pre>
+      </div>
+    );
   }
 
 
@@ -55,19 +70,7 @@ function App() {
             <TabButton onSelect={() => handleSelect('state')}>State</TabButton>
           </menu>
 
-        <div id="tab-content">
-          <h3>{EXAMPLES[selectedTopic].title}</h3>
-          <p>{EXAMPLES[selectedTopic].description}</p>
-          <pre>
-            <code>
-              {EXAMPLES[selectedTopic].code}
-            </code>
-          </pre>
-
-
-        </div>
-
-
+        {tabContent /*render tab content*/}
 
         </section>
 
