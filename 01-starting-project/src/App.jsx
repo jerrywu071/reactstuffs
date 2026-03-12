@@ -1,19 +1,30 @@
+import { useState } from 'react'; //anything starting with 'use' is a hook, is a regular function but can only be called in react components or other custom hooks.
+
+
 
 import { CORE_CONCEPTS } from './data.js';
+import { EXAMPLES } from './data.js';
+
 import Header from './components/Header/Header.jsx';
 import CoreConcept from './components/CoreConcept.jsx';
 import TabButton from './components/TabButton.jsx';
 
 function App() {
 
+  //must call directly in component function at the top level and not on an inner helper function. 2nd element in the array is a function called to update the data i.e. call the component function again
+
+  //also, the initial state has to be a valid element in the array otherwise an error will persist
+  const [ selectedTopic, setSelectedTopic ] = useState('components'); 
+  
+
   let tabContent = 'Please click a button';
 
   function handleSelect(selectedButton) {
       //selected button can be components, jsx, props, or state
 
-      tabContent = selectedButton;
+      setSelectedTopic(selectedButton);
 
-      console.log(tabContent);
+      console.log(selectedTopic);
   }
 
 
@@ -44,7 +55,17 @@ function App() {
             <TabButton onSelect={() => handleSelect('state')}>State</TabButton>
           </menu>
 
-        {tabContent}
+        <div id="tab-content">
+          <h3>{EXAMPLES[selectedTopic].title}</h3>
+          <p>{EXAMPLES[selectedTopic].description}</p>
+          <pre>
+            <code>
+              {EXAMPLES[selectedTopic].code}
+            </code>
+          </pre>
+
+
+        </div>
 
 
 
