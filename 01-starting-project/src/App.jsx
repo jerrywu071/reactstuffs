@@ -14,6 +14,8 @@ function App() {
   //must call directly in component function at the top level and not on an inner helper function. 2nd element in the array is a function called to update the data i.e. call the component function again
 
   //also, the initial state has to be a valid element in the array otherwise an error will persist
+
+  //IMPORTANT ** the state array format is [ state variable (any value), state variable setter function ]
   const [ selectedTopic, setSelectedTopic ] = useState(); 
 
 
