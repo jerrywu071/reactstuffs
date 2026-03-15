@@ -54,10 +54,7 @@ function App() {
         
           <h2>Core concepts</h2>
           <ul>
-            <CoreConcept {...CORE_CONCEPTS[0]}/>
-            <CoreConcept {...CORE_CONCEPTS[1]}/>
-            <CoreConcept {...CORE_CONCEPTS[2]}/>
-            <CoreConcept {...CORE_CONCEPTS[3]}/>
+            {CORE_CONCEPTS.map((conceptItem) => <CoreConcept key={conceptItem.title} {...conceptItem} />) /*dynamically output the core concepts as list items, spread operator to pass all the properties of the concept item as props to the component*/}
           </ul>
         </section>
 
