@@ -46,7 +46,7 @@ function App() {
 
 
   return (
-    <div>
+    <> {/*fragment alternative*/}
       <Header />
       <main>
         <section id='core-concepts'>
@@ -76,7 +76,7 @@ function App() {
 
 
       </main>
-    </div>
+    </>
   );
 }
 
