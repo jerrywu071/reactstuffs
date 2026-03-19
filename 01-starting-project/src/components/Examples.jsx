@@ -7,6 +7,8 @@ import { EXAMPLES } from '../data.js';
 
 export default function Examples() {
 
+    //THE GOAL IS TO DO ALL STATE HANDLING IN THEIR OWN COMPONENTS TO SEPARATE CONCERNS AND MAKE COMPONENTS MORE REUSABLE. IN THIS CASE, THE EXAMPLES COMPONENT IS RESPONSIBLE FOR RENDERING THE EXAMPLE TOPICS AND CONTENT, SO IT HANDLES THE STATE OF WHICH TOPIC IS SELECTED WITHOUT REFRESHING THE WHOLE APP'S STATE.
+
     //must call directly in component function at the top level and not on an inner helper function. 2nd element in the array is a function called to update the data i.e. call the component function again
 
     //also, the initial state has to be a valid element in the array otherwise an error will persist
