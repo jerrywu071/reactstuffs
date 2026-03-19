@@ -1,5 +1,5 @@
 
-
+import Tabs from '../components/Tabs.jsx';
 import TabButton from '../components/TabButton.jsx';
 import Section from '../components/Section.jsx';
 import { useState } from 'react'; //anything starting with 'use' is a hook, is a regular function but can only be called in react components or other custom hooks.
@@ -43,7 +43,11 @@ export default function Examples() {
     return(
         <Section title="Examples" id="examples"> {/* id="examples" is a forwarded prop */}
 
-            <menu>
+        {/*We can dynamically pass in a dynamic wrapper type. In this case it's menu. If it's a builtin, we use a string identifier for the prop, but if it's a custom component, we use curly braces for the identifier.*/}
+        <Tabs buttons={
+            <>
+                {/*We can pass this multiline JSX code fragment with each tab button as a single prop into Tabs to render it. However, it must be a single parent element, thus we surround everything with a <></> fragment just like returning JSX code to be rendered.*/}
+
                 {/*CHECK WHICH TOPIC IS SELECTED FOR EACH ONE TO DETERMINE HIGHLIGHTING*/}
 
                 {/*Custom "onSelect" prop is no longer needed due to prop forwarding as defined in TabButton.jsx. Now we can use onClick*/}
@@ -51,9 +55,9 @@ export default function Examples() {
                 <TabButton isSelected={selectedTopic === 'jsx'} onClick={() => handleSelect('jsx')}>JSX</TabButton>
                 <TabButton isSelected={selectedTopic === 'props'} onClick={() => handleSelect('props')}>Props</TabButton>
                 <TabButton isSelected={selectedTopic === 'state'} onClick={() => handleSelect('state')}>State</TabButton>
-            </menu>
-
-        {tabContent /*render tab content*/}
+            
+            </>
+        }> {tabContent /*render tab content*/} </Tabs>
 
         </Section>
     );
