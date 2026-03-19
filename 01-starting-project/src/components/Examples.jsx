@@ -1,6 +1,7 @@
 
 
 import TabButton from '../components/TabButton.jsx';
+import Section from '../components/Section.jsx';
 import { useState } from 'react'; //anything starting with 'use' is a hook, is a regular function but can only be called in react components or other custom hooks.
 
 import { EXAMPLES } from '../data.js';
@@ -21,8 +22,6 @@ export default function Examples() {
         //selected button can be components, jsx, props, or state
 
         setSelectedTopic(selectedButton);
-
-        console.log(selectedTopic);
     }
 
     //conditional rendering for the tab content
@@ -42,19 +41,20 @@ export default function Examples() {
         );
     }
     return(
-        <section id="examples">
-            <h2>Examples</h2>
+        <Section title="Examples" id="examples"> {/* id="examples" is a forwarded prop */}
 
             <menu>
                 {/*CHECK WHICH TOPIC IS SELECTED FOR EACH ONE TO DETERMINE HIGHLIGHTING*/}
-                <TabButton isSelected={selectedTopic === 'components'} onSelect={() => handleSelect('components')}>Components</TabButton>
-                <TabButton isSelected={selectedTopic === 'jsx'} onSelect={() => handleSelect('jsx')}>JSX</TabButton>
-                <TabButton isSelected={selectedTopic === 'props'} onSelect={() => handleSelect('props')}>Props</TabButton>
-                <TabButton isSelected={selectedTopic === 'state'} onSelect={() => handleSelect('state')}>State</TabButton>
+
+                {/*Custom "onSelect" prop is no longer needed due to prop forwarding as defined in TabButton.jsx. Now we can use onClick*/}
+                <TabButton isSelected={selectedTopic === 'components'} onClick={() => handleSelect('components')}>Components</TabButton>
+                <TabButton isSelected={selectedTopic === 'jsx'} onClick={() => handleSelect('jsx')}>JSX</TabButton>
+                <TabButton isSelected={selectedTopic === 'props'} onClick={() => handleSelect('props')}>Props</TabButton>
+                <TabButton isSelected={selectedTopic === 'state'} onClick={() => handleSelect('state')}>State</TabButton>
             </menu>
 
         {tabContent /*render tab content*/}
 
-        </section>
+        </Section>
     );
 }
